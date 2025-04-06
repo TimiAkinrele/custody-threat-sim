@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results for {{ result.ip }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>IP Details for {{ result.ip }}</h1>
+
+        <h3>Blocked Status:</h3>
+        {% if result.blocked %}
+            <p class="blocked">This IP is considered malicious and has been blocked!</p>
+        {% else %}
+            <p class="clean">This IP is clean.</p>
+        {% endif %}
+
+        <h3>Overview</h3>
+        <table>
+            <tr>
+                <th>API</th>
+                <th>Key Details</th>
+            </tr>
+            <tr>
+                <td>AbuseIPDB</td>
+                <td>
+                    Abuse Score: {{ result.abuse.data.abuseConfidenceScore if result.abuse.data else 'Error' }}<br>
+                    Total Reports: {{ result.abuse.data.totalReports if result.abuse.data else 'Error' }}
+                </td>
+            </tr>
+            <tr>
+                <td>VirusTotal</td>
+                <td>
+                    Malicious Reports: {{ result.virustotal.data.attributes.last_analysis_stats.malicious if result.virustotal.data else 'Error' }}<br>
+                    Last Analysis Date: {{ result.virustotal.data.attributes.last_analysis_date if result.virustotal.data else 'Error' }}
+                </td>
+            </tr>
+            <tr>
+                <td>Shodan</td>
+                <td>
+                    OS: {{ result.shodan.os if result.shodan else 'Error' }}<br>
+                    Hostnames: {{ result.shodan.hostnames if result.shodan else 'Error' }}<br>
+                    City: {{ result.shodan.location.city if result.shodan and result.shodan.location else 'Error' }}<br>
+                    Country: {{ result.shodan.location.country_name if result.shodan and result.shodan.location else 'Error' }}<br>
+                    ISP: {{ result.shodan.isp if result.shodan else 'Error' }}<br>
+                    Org: {{ result.shodan.org if result.shodan else 'Error' }}
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <a href="/">Search another IP</a>
+    </div>
+</body>
+</html>

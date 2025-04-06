@@ -1,0 +1,12 @@
+# Virtual environment directory
+venv/
+
+# Environment variables file (keep secrets out of Git)
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Log files (if you don't want to commit them)
+ip_logs.txt
