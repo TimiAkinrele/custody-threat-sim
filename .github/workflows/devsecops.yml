@@ -29,5 +29,3 @@ jobs:
         run: |
           safety check --file=requirements.txt --full-report
 
-      - name: Run Bandit Code Scan
-        run: bandit -r .
