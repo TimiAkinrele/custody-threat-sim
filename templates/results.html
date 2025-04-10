@@ -14,7 +14,7 @@
         {% if result.blocked %}
             <p class="blocked">This IP is considered malicious and has been blocked!</p>
         {% else %}
-            <p class="clean">This IP is clean.</p>
+            <p class="clean">This IP is not considered malicious!</p>
         {% endif %}
 
         <h3>Overview</h3>
@@ -26,8 +26,8 @@
             <tr>
                 <td>AbuseIPDB</td>
                 <td>
-                    Abuse Score: {{ result.abuse.data.abuseConfidenceScore if result.abuse.data else 'Error' }}<br>
-                    Total Reports: {{ result.abuse.data.totalReports if result.abuse.data else 'Error' }}
+                    Abuse Score: {{ result.abuse_score }}<br>
+                    Total Reports: {{ result.total_reports }}
                 </td>
             </tr>
             <tr>
@@ -49,7 +49,6 @@
                 </td>
             </tr>
         </table>
-
         <br>
         <a href="/">Search another IP</a>
     </div>

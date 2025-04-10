@@ -14,8 +14,7 @@
             <input type="text" id="ip_address" name="ip_address" required placeholder="e.g., 8.8.8.8">
             <button type="submit">Check IP</button>
         </form>
-
-        {% if result.error %}
+        {% if result and result.error %}
             <p class="error">{{ result.error }}</p>
         {% endif %}
     </div>
