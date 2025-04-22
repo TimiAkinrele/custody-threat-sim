@@ -2,21 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Threat Lookup</title>
+    <title>IP Threat Intelligence</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <header>
+        <h1>IP Threat Intelligence</h1>
+    </header>
     <div class="container">
-        <h1>IP Threat Lookup</h1>
-        <form method="POST">
+        <form action="{{ url_for('index') }}" method="post">
             <label for="ip_address">Enter IP Address:</label>
-            <input type="text" id="ip_address" name="ip_address" required placeholder="e.g., 8.8.8.8">
-            <button type="submit">Check IP</button>
+            <input type="text" id="ip_address" name="ip_address" required>
+            <button type="submit">Check</button>
         </form>
-        {% if result and result.error %}
-            <p class="error">{{ result.error }}</p>
+        {% if result %}
+        <h2>Results for {{ result.ip }}</h2>
+        <p>Abuse Score: {{ result.abuse_score }}</p>
+        <p>Total Reports: {{ result.total_reports }}</p>
+        <p>Blocked: {{ result.blocked }}</p>
         {% endif %}
+        <a href="{{ url_for('home') }}">Back to Home</a>
     </div>
 </body>
 </html>

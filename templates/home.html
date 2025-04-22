@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Copper Custody Sim</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Copper Custody Sim</h1>
+    </header>
+    <div class="container">
+        <h2>Explore the Application</h2>
+        <ul>
+            <li><a href="{{ url_for('index') }}">IP Threat Intelligence</a></li>
+            <li><a href="{{ url_for('simulate') }}">Simulate Transaction</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        </ul>
+    </div>
+</body>
+</html>

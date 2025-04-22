@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MPC Simulation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>MPC Simulation</h1>
+    <h2>Secret: {{ secret_hex }}</h2>
+    <h2>Shares</h2>
+    <ul>
+        {% for party, share in shares.items() %}
+        <li>{{ party }}: {{ share }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Reconstructed Secrets</h2>
+    <ul>
+        <li>{{ recon1[0] }} & {{ recon1[1] }}: {{ recon1[2] }}</li>
+        <li>{{ recon2[0] }} & {{ recon2[1] }}: {{ recon2[2] }}</li>
+        <li>{{ recon3[0] }} & {{ recon3[1] }}: {{ recon3[2] }}</li>
+    </ul>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
